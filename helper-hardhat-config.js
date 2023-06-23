@@ -16,9 +16,8 @@ const networkConfig = {
     11155111: {
         name: "sepolia",
     },
-    // what is the chainId for polygon-mumbai?
     80001: {
-        name: "polygon-mumbai",
+        name: "mumbai",
     },
 }
 const developmentChains = ["hardhat", "localhost"]

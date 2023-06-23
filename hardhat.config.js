@@ -8,6 +8,8 @@ require("dotenv").config()
 
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL
+const POLYGON_MUMBAI_RPC_URL = process.env.POLYGON_MUMBAI_RPC_URL
+const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 
@@ -19,6 +21,10 @@ module.exports = {
     networks: {
         hardhat: {
             chainId: 31337,
+            mining: {
+                auto: true,
+                interval: 2000,
+            },
         },
         localhost: {
             chainId: 31337,
@@ -39,12 +45,20 @@ module.exports = {
             saveDeployments: true,
             chainId: 11155111,
         },
+        mumbai: {
+            chainId: 80001,
+            url: POLYGON_MUMBAI_RPC_URL,
+            accounts: [PRIVATE_KEY],
+            blockConfirmations: 6,
+            saveDeployments: true,
+        },
     },
     etherscan: {
         // yarn hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
         apiKey: {
             goerli: ETHERSCAN_API_KEY,
             sepolia: ETHERSCAN_API_KEY,
+            mumbai: POLYGONSCAN_API_KEY,
         },
         customChains: [
             {
